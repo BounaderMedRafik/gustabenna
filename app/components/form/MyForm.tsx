@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import QuestionnaireBG from "@/public/QuestionnaireBG.svg";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
 import MyInputField from "./MyInputField";
 import supabase from "@/app/config/supabaseClient";
@@ -24,10 +24,11 @@ export function MyForm() {
       .from("Users")
       .insert([{ FirstName, LastName, Age, Email }]);
   };
+
   return (
     <div className="w-full h-[92vh] lg:grid lg:min-h-[900vh] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
-        <div className="mx-auto grid w-[350px] gap-6">
+        <div className="mx-auto grid w-[350px] ">
           <div className="grid gap-2 text-start">
             <h1 className="text-3xl font-bold">Questionnaire</h1>
             <p className="text-balance text-muted-foreground">
@@ -36,51 +37,66 @@ export function MyForm() {
           </div>
 
           <form onSubmit={handleSubmit}>
-            {Step == 0 ? (
-              <div>
-                <MyInputField
-                  title="FirstName"
-                  type="text"
-                  value={FirstName}
-                  onChange={(e: any) => setFirstName(e.target.value)}
-                  placeholder="Med Rafik"
-                />
-                <MyInputField
-                  title="LastName"
-                  type="text"
-                  value={LastName}
-                  onChange={(e: any) => setLastName(e.target.value)}
-                  placeholder="Bounader"
-                />
-                <MyInputField
-                  title="Email"
-                  type="email"
-                  value={Email}
-                  onChange={(e: any) => setEmail(e.target.value)}
-                  placeholder="Bounader@gmail.com"
-                />
-                <MyInputField
-                  title="Age"
-                  type="number"
-                  value={Age}
-                  onChange={(e: any) => setAge(e.target.value)}
-                  placeholder="21 Years old"
-                />
-              </div>
-            ) : Step == 1 ? (
-              <div></div>
-            ) : null}
+            <div className="mb-5">
+              {Step == 0 ? (
+                <div>
+                  <MyInputField
+                    title="FirstName"
+                    type="text"
+                    value={FirstName}
+                    onChange={(e: any) => setFirstName(e.target.value)}
+                    placeholder="Med Rafik"
+                  />
+                  <MyInputField
+                    title="LastName"
+                    type="text"
+                    value={LastName}
+                    onChange={(e: any) => setLastName(e.target.value)}
+                    placeholder="Bounader"
+                  />
+                  <MyInputField
+                    title="Email"
+                    type="email"
+                    value={Email}
+                    onChange={(e: any) => setEmail(e.target.value)}
+                    placeholder="Bounader@gmail.com"
+                  />
+                  <MyInputField
+                    title="Age"
+                    type="number"
+                    value={Age}
+                    onChange={(e: any) => setAge(e.target.value)}
+                    placeholder="21 Years old"
+                  />
+                </div>
+              ) : Step == 1 ? (
+                <div>helo nigers</div>
+              ) : null}
+            </div>
 
-            {/*--- submit buttons */}
-            <div className="flex justify-between gap-2 mt-5">
+            {Step == 1 ? (
               <Button
-                onClick={() => setStep(Step - 1)}
+                onClick={() => toast.success("new user added succefuly")}
                 type="submit"
-                className="w-full flex justify-center items-center gap-2"
+                className="w-full flex justify-center items-center gap-2 mt-7"
+                variant="submit"
               >
-                <ArrowLeft size={15} />
-                Previous
+                Submit
+                <Check size={15} />
               </Button>
+            ) : null}
+          </form>
+          <div className="flex justify-between gap-2 mt-1">
+            <Button
+              variant={Step < 1 ? "disabled" : "default"}
+              onClick={() => setStep(Step - 1)}
+              className="w-full flex justify-center items-center gap-2"
+            >
+              <ArrowLeft size={15} />
+              Previous
+            </Button>
+
+            {Step == 1 ? null : (
               <Button
                 onClick={() => setStep(Step + 1)}
                 variant="outline"
@@ -88,8 +104,8 @@ export function MyForm() {
               >
                 Next <ArrowRight size={15} />
               </Button>
-            </div>
-          </form>
+            )}
+          </div>
         </div>
       </div>
       <div className="hidden bg-muted lg:block">
