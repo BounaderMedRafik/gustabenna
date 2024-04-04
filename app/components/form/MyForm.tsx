@@ -8,6 +8,15 @@ import MyInputField from "./MyInputField";
 import supabase from "@/app/config/supabaseClient";
 import toast from "react-hot-toast";
 import { useUser } from "@clerk/clerk-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function MyForm() {
   const { user } = useUser();
@@ -16,13 +25,18 @@ export function MyForm() {
   const [LastName, setLastName] = useState(user?.lastName);
   const [Email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
   const [Age, setAge] = useState("");
+  const [Fruits, setFruits] = useState("");
+  const [PhoneNum, setPhoneNum] = useState("");
+  const [CodePostal, setCodePostal] = useState("");
+  const [Wilaya, setWilaya] = useState("");
+  const [choice, setChoice] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(FirstName, LastName, Age, Email);
+    console.log(FirstName, LastName, Age, Email, Fruits);
     const { data, error } = await supabase
       .from("Users")
-      .insert([{ FirstName, LastName, Age, Email }]);
+      .insert([{ FirstName, LastName, Age, Email, Fruits }]);
   };
 
   return (
@@ -70,7 +84,37 @@ export function MyForm() {
                   />
                 </div>
               ) : Step == 1 ? (
-                <div>helo nigers</div>
+                <div>
+                  {" "}
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="hello">{Fruits}</SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem
+                          onClick={() => setFruits("Apple")}
+                          value={"Apple"}
+                        >
+                          Apple
+                        </SelectItem>
+                        <SelectItem
+                          onClick={() => setFruits("Banana")}
+                          value="Banana"
+                        >
+                          Banana
+                        </SelectItem>
+                        <SelectItem
+                          onClick={() => setFruits("Orange")}
+                          value="Orange"
+                        >
+                          Orange
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
               ) : null}
             </div>
 
@@ -88,7 +132,7 @@ export function MyForm() {
           </form>
           <div className="flex justify-between gap-2 mt-1">
             <Button
-              variant={Step < 1 ? "disabled" : "default"}
+              disabled={Step < 1 ? true : false}
               onClick={() => setStep(Step - 1)}
               className="w-full flex justify-center items-center gap-2"
             >
