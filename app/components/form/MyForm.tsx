@@ -29,6 +29,11 @@ export function MyForm() {
   const [PhoneNum, setPhoneNum] = useState("");
   const [CodePostal, setCodePostal] = useState("");
   const [Wilaya, setWilaya] = useState("");
+  const [Gender, setGender] = useState("");
+  const [ObjectivePrincipal, setObjectivePrincipal] = useState("");
+  const [Taille, setTaille] = useState("");
+  const [PoidsAct, setPoidsAct] = useState("");
+  const [PoidsSouh, setPoidsSouh] = useState("");
 
   const wilayas = [
     "Adrar",
@@ -36,27 +41,27 @@ export function MyForm() {
     "Laghouat",
     "Oum El Bouaghi",
     "Batna",
-    "Béjaïa",
+    "Bejaia",
     "Biskra",
-    "Béchar",
+    "Bechar",
     "Blida",
     "Bouira",
     "Tamanrasset",
-    "Tébessa",
+    "Tebessa",
     "Tlemcen",
     "Tiaret",
     "Tizi Ouzou",
     "Alger",
     "Djelfa",
     "Jijel",
-    "Sétif",
-    "Saïda",
+    "Setif",
+    "Saida",
     "Skikda",
     "Sidi Bel Abbès",
     "Annaba",
     "Guelma",
     "Constantine",
-    "Médéa",
+    "Medea",
     "Mostaganem",
     "M'Sila",
     "Mascara",
@@ -64,7 +69,7 @@ export function MyForm() {
     "Oran",
     "El Bayadh",
     "Illizi",
-    "Bordj Bou Arréridj",
+    "Bordj Bou Arreridj",
     "Boumerdès",
     "El Tarf",
     "Tindouf",
@@ -74,11 +79,17 @@ export function MyForm() {
     "Souk Ahras",
     "Tipaza",
     "Mila",
-    "Aïn Defla",
+    "Ain Defla",
     "Naâma",
-    "Aïn Témouchent",
-    "Ghardaïa",
+    "Ain Temouchent",
+    "Ghardaia",
     "Relizane",
+  ];
+  const genders = ["male", "femal"];
+  const objectivesPrincipal = [
+    "Perdre du poids",
+    "Prendre du poids",
+    "Rester en forme et en bonne sante",
   ];
 
   const handleSubmit = async (e: any) => {
@@ -182,10 +193,94 @@ export function MyForm() {
                     </DropdownMenu>
                   </div>
                 </div>
+              ) : Step == 2 ? (
+                <div>
+                  <div className="mt-4">
+                    <Label className="mb-2">Gender</Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {Gender == "" ? "choose gender" : Gender}
+                            <ChevronDown size={15} />
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {genders.map((gender) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setGender(gender)}
+                              className="flex justify-between items-center"
+                            >
+                              {gender}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">Objective principal</Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {ObjectivePrincipal == ""
+                              ? "choose Objective principal"
+                              : ObjectivePrincipal}
+                            <ChevronDown size={15} />
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {objectivesPrincipal.map((objective) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setObjectivePrincipal(objective)}
+                              className="flex justify-between items-center"
+                            >
+                              {objective}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                    <MyInputField
+                      title="Taille"
+                      type="number"
+                      value={Taille}
+                      onChange={(e: any) => setTaille(e.target.value)}
+                      placeholder="192 cm"
+                    />
+                    <MyInputField
+                      title="Poids Actuel"
+                      type="number"
+                      value={PoidsAct}
+                      onChange={(e: any) => setPoidsAct(e.target.value)}
+                      placeholder="57 kg"
+                    />
+                    <MyInputField
+                      title="Poids souhaite"
+                      type="number"
+                      value={PoidsSouh}
+                      onChange={(e: any) => setPoidsSouh(e.target.value)}
+                      placeholder="75 kg"
+                    />
+                  </div>
+                </div>
               ) : null}
             </div>
 
-            {Step == 1 ? (
+            {Step == 10 ? (
               <Button
                 onClick={() => toast.success("new user added succefuly")}
                 type="submit"
@@ -207,7 +302,7 @@ export function MyForm() {
               Previous
             </Button>
 
-            {Step == 1 ? null : (
+            {Step == 10 ? null : (
               <Button
                 onClick={() => setStep(Step + 1)}
                 variant="outline"
