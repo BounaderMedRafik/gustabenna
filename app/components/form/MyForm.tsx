@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import QuestionnaireBG from "@/public/QuestionnaireBG.svg";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import MyInputField from "./MyInputField";
 import supabase from "@/app/config/supabaseClient";
@@ -24,7 +24,6 @@ export function MyForm() {
   const [LastName, setLastName] = useState(user?.lastName);
   const [Email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
   const [Age, setAge] = useState("");
-  const [Fruits, setFruits] = useState("");
   const [PhoneNum, setPhoneNum] = useState("");
   const [CodePostal, setCodePostal] = useState("");
   const [Wilaya, setWilaya] = useState("");
@@ -32,10 +31,10 @@ export function MyForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(FirstName, LastName, Age, Email, Fruits);
+    console.log(FirstName, LastName, Age, Email);
     const { data, error } = await supabase
       .from("Users")
-      .insert([{ FirstName, LastName, Age, Email, Fruits }]);
+      .insert([{ FirstName, LastName, Age, Email }]);
   };
 
   return (
@@ -84,25 +83,44 @@ export function MyForm() {
                 </div>
               ) : Step == 1 ? (
                 <div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="w-full">
-                      <Button className="w-full" variant="outline">
-                        {Fruits == "" ? "Choose a fruite" : Fruits}
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-[250px]">
-                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => setFruits("banane")}>
-                        banane
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setFruits("apples")}>
-                        apples
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>Team</DropdownMenuItem>
-                      <DropdownMenuItem>Subscription</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {" "}
+                  <MyInputField
+                    title="PhoneNum"
+                    type="number"
+                    value={PhoneNum}
+                    onChange={(e: any) => setPhoneNum(e.target.value)}
+                    placeholder="+213 5589 45 84 12"
+                  />
+                  <MyInputField
+                    title="CodePostal"
+                    type="number"
+                    value={CodePostal}
+                    onChange={(e: any) => setCodePostal(e.target.value)}
+                    placeholder="96799"
+                  />
+                  <div className="mt-4">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {Wilaya == "" ? "choose wilaya" : Wilaya}
+                            <ChevronDown size={15} />
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                        <DropdownMenuItem>Team</DropdownMenuItem>
+                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
               ) : null}
             </div>
