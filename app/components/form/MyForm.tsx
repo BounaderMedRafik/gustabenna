@@ -16,6 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MyForm() {
   const { user } = useUser();
@@ -27,11 +29,61 @@ export function MyForm() {
   const [PhoneNum, setPhoneNum] = useState("");
   const [CodePostal, setCodePostal] = useState("");
   const [Wilaya, setWilaya] = useState("");
-  const [choice, setChoice] = useState("");
+
+  const wilayas = [
+    "Adrar",
+    "Chlef",
+    "Laghouat",
+    "Oum El Bouaghi",
+    "Batna",
+    "Béjaïa",
+    "Biskra",
+    "Béchar",
+    "Blida",
+    "Bouira",
+    "Tamanrasset",
+    "Tébessa",
+    "Tlemcen",
+    "Tiaret",
+    "Tizi Ouzou",
+    "Alger",
+    "Djelfa",
+    "Jijel",
+    "Sétif",
+    "Saïda",
+    "Skikda",
+    "Sidi Bel Abbès",
+    "Annaba",
+    "Guelma",
+    "Constantine",
+    "Médéa",
+    "Mostaganem",
+    "M'Sila",
+    "Mascara",
+    "Ouargla",
+    "Oran",
+    "El Bayadh",
+    "Illizi",
+    "Bordj Bou Arréridj",
+    "Boumerdès",
+    "El Tarf",
+    "Tindouf",
+    "Tissemsilt",
+    "El Oued",
+    "Khenchela",
+    "Souk Ahras",
+    "Tipaza",
+    "Mila",
+    "Aïn Defla",
+    "Naâma",
+    "Aïn Témouchent",
+    "Ghardaïa",
+    "Relizane",
+  ];
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(FirstName, LastName, Age, Email);
+    console.log(FirstName, LastName, Age, Email, PhoneNum, CodePostal, Wilaya);
     const { data, error } = await supabase
       .from("Users")
       .insert([{ FirstName, LastName, Age, Email }]);
@@ -99,6 +151,7 @@ export function MyForm() {
                     placeholder="96799"
                   />
                   <div className="mt-4">
+                    <Label className="mb-2">Wilaya</Label>
                     <DropdownMenu>
                       <DropdownMenuTrigger className="w-full">
                         <Button
@@ -112,12 +165,17 @@ export function MyForm() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-[350px]">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                        <DropdownMenuItem>Team</DropdownMenuItem>
-                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                        <ScrollArea className="w-full h-52">
+                          {wilayas.map((wilaya) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setWilaya(wilaya)}
+                              className="flex justify-between items-center"
+                            >
+                              {wilaya}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
