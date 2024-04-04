@@ -68,7 +68,7 @@ export function MyForm() {
                 />
               </div>
             ) : Step == 1 ? (
-              <div>page of nigas;-;</div>
+              <div></div>
             ) : null}
 
             {/*--- submit buttons */}
