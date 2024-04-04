@@ -9,14 +9,13 @@ import supabase from "@/app/config/supabaseClient";
 import toast from "react-hot-toast";
 import { useUser } from "@clerk/clerk-react";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function MyForm() {
   const { user } = useUser();
@@ -85,35 +84,25 @@ export function MyForm() {
                 </div>
               ) : Step == 1 ? (
                 <div>
-                  {" "}
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="hello">{Fruits}</SelectValue>
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
-                        <SelectItem
-                          onClick={() => setFruits("Apple")}
-                          value={"Apple"}
-                        >
-                          Apple
-                        </SelectItem>
-                        <SelectItem
-                          onClick={() => setFruits("Banana")}
-                          value="Banana"
-                        >
-                          Banana
-                        </SelectItem>
-                        <SelectItem
-                          onClick={() => setFruits("Orange")}
-                          value="Orange"
-                        >
-                          Orange
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="w-full">
+                      <Button className="w-full" variant="outline">
+                        {Fruits == "" ? "Choose a fruite" : Fruits}
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-[250px]">
+                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => setFruits("banane")}>
+                        banane
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setFruits("apples")}>
+                        apples
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>Team</DropdownMenuItem>
+                      <DropdownMenuItem>Subscription</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               ) : null}
             </div>
