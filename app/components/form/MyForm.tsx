@@ -84,9 +84,11 @@ export function MyForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(FirstName, LastName, Age, Email, PhoneNum, CodePostal, Wilaya);
-    const { data, error } = await supabase
-      .from("Users")
-      .insert([{ FirstName, LastName, Age, Email }]);
+
+    //supabase stuff dont forget :)
+    // const { data, error } = await supabase
+    //   .from("Users")
+    //   .insert([{ FirstName, LastName, Age, Email }]);
   };
 
   return (
