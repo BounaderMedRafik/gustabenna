@@ -34,6 +34,7 @@ export function MyForm() {
   const [Taille, setTaille] = useState("");
   const [PoidsAct, setPoidsAct] = useState("");
   const [PoidsSouh, setPoidsSouh] = useState("");
+  const [JourneGeneral, setJourneGeneral] = useState("");
 
   const wilayas = [
     "Adrar",
@@ -90,6 +91,12 @@ export function MyForm() {
     "Perdre du poids",
     "Prendre du poids",
     "Rester en forme et en bonne sante",
+  ];
+  const journesGeneral = [
+    "Assis toute la journee au travail",
+    "je suis toujours debout",
+    "je fais beaucoup d'activite physique",
+    "je reste a la maison",
   ];
 
   const handleSubmit = async (e: any) => {
@@ -276,7 +283,42 @@ export function MyForm() {
                       placeholder="75 kg"
                     />
                   </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Comment passez-vous generalement votre journee
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {JourneGeneral == ""
+                              ? "choose la journee"
+                              : JourneGeneral}
+                            <ChevronDown size={15} />
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {journesGeneral.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setJourneGeneral(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
+              ) : Step == 3 ? (
+                <div>page 3</div>
               ) : null}
             </div>
 
