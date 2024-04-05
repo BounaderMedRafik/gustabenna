@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MyForm() {
+  const TotalStep = 10;
   const { user } = useUser();
   const [Step, setStep] = useState(0);
   const [FirstName, setFirstName] = useState(user?.firstName);
@@ -35,7 +36,16 @@ export function MyForm() {
   const [PoidsAct, setPoidsAct] = useState("");
   const [PoidsSouh, setPoidsSouh] = useState("");
   const [JourneGeneral, setJourneGeneral] = useState("");
-
+  const [ActivitePhy, setActivitePhy] = useState("");
+  const [Fatigue, setFatigue] = useState("");
+  const [Estomac, setEstomac] = useState("");
+  const [LesRepas, setLesRepas] = useState("");
+  const [LesTendance, setLesTendance] = useState("");
+  const [MangezExt, setMangezExt] = useState("");
+  // arrays
+  const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
+  const estomac = ["Oui", "Non", "Je ne suis pas sur"];
+  const genders = ["male", "femal"];
   const wilayas = [
     "Adrar",
     "Chlef",
@@ -86,7 +96,6 @@ export function MyForm() {
     "Ghardaia",
     "Relizane",
   ];
-  const genders = ["male", "femal"];
   const objectivesPrincipal = [
     "Perdre du poids",
     "Prendre du poids",
@@ -97,6 +106,31 @@ export function MyForm() {
     "je suis toujours debout",
     "je fais beaucoup d'activite physique",
     "je reste a la maison",
+  ];
+  const activitePhy = [
+    "Sedentaire",
+    "Legerement actif",
+    "Tres actif",
+    "Extremement actif",
+  ];
+  const fatigues = [
+    "Je me sens fatigue toute la journee",
+    "Je me sens fatiguee avant les repas",
+    "Jai quelque coups de barre l'apres-midi",
+    "Je suis une boule de feu toute la journee",
+  ];
+  const tendaces = [
+    "Manager tard le soir",
+    "Je ne peux pas m'empecher de manger des bonbons",
+    "J'adore les boissons gazeuses",
+    "J'aime les aliments gras ou sales",
+    "Rien de tout cela",
+  ];
+  const mangezext = [
+    "1-3 fois par semaine",
+    "Plus de 4 fois par semaine",
+    "1-3 fois par mois ",
+    "Presque jamais",
   ];
 
   const handleSubmit = async (e: any) => {
@@ -180,7 +214,13 @@ export function MyForm() {
                         >
                           <div className="flex justify-between w-full items-center">
                             {Wilaya == "" ? "choose wilaya" : Wilaya}
-                            <ChevronDown size={15} />
+                            <div className="flex items-center gap-2">
+                              {Wilaya == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
                           </div>
                         </Button>
                       </DropdownMenuTrigger>
@@ -212,7 +252,13 @@ export function MyForm() {
                         >
                           <div className="flex justify-between w-full items-center">
                             {Gender == "" ? "choose gender" : Gender}
-                            <ChevronDown size={15} />
+                            <div className="flex items-center gap-2">
+                              {Gender == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
                           </div>
                         </Button>
                       </DropdownMenuTrigger>
@@ -243,7 +289,13 @@ export function MyForm() {
                             {ObjectivePrincipal == ""
                               ? "choose Objective principal"
                               : ObjectivePrincipal}
-                            <ChevronDown size={15} />
+                            <div className="flex items-center gap-2">
+                              {ObjectivePrincipal == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
                           </div>
                         </Button>
                       </DropdownMenuTrigger>
@@ -297,7 +349,13 @@ export function MyForm() {
                             {JourneGeneral == ""
                               ? "choose la journee"
                               : JourneGeneral}
-                            <ChevronDown size={15} />
+                            <div className="flex items-center gap-2">
+                              {JourneGeneral == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
                           </div>
                         </Button>
                       </DropdownMenuTrigger>
@@ -318,7 +376,238 @@ export function MyForm() {
                   </div>
                 </div>
               ) : Step == 3 ? (
-                <div>page 3</div>
+                <div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Pratiques-vous une activite physique ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {ActivitePhy == ""
+                              ? "choose un option"
+                              : ActivitePhy}
+                            <div className="flex items-center gap-2">
+                              {ActivitePhy == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {activitePhy.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setActivitePhy(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      A quel point vous sentez-vous fatiguee pendant la journee
+                      ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {Fatigue == "" ? "choose un option" : Fatigue}
+                            <div className="flex items-center gap-2">
+                              {Fatigue == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {fatigues.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setFatigue(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Ressentez-vous des maux d&apos;estomac pendant la journee
+                      ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {Estomac == "" ? "choose un option" : Estomac}
+                            <div className="flex items-center gap-2">
+                              {Estomac == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {estomac.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setEstomac(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Combien de repas par jour aimeriez-vous avoir ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {LesRepas == "" ? "choose un option" : LesRepas}
+                            <div className="flex items-center gap-2">
+                              {LesRepas == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {lesRepas.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setLesRepas(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+              ) : Step == 4 ? (
+                <div>
+                  <div className="mt-4">
+                    <Label className="mb-2">Vous avez tendance a ...?</Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {LesTendance == ""
+                              ? "choose une tendance"
+                              : LesTendance}
+                            <div className="flex items-center gap-2">
+                              {LesTendance == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {tendaces.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setLesTendance(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      A quelle frequence mangez-vous a l&apos;exterieur?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {MangezExt == "" ? "choose une option" : MangezExt}{" "}
+                            s
+                            <div className="flex items-center gap-2">
+                              {MangezExt == "" ? null : (
+                                <Check size={15} className="text-green-500" />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {mangezext.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setMangezExt(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
               ) : null}
             </div>
 
@@ -353,6 +642,12 @@ export function MyForm() {
                 Next <ArrowRight size={15} />
               </Button>
             )}
+          </div>
+          <div className="w-full h-2 bg-gray-50 mt-4 border rounded-full">
+            <div
+              style={{ width: `${(Step / TotalStep) * 100}%` }}
+              className=" h-full transition-all bg-green-700 rounded-full"
+            ></div>
           </div>
         </div>
       </div>
