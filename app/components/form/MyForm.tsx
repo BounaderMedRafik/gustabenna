@@ -43,6 +43,7 @@ export function MyForm() {
   const [LesTendance, setLesTendance] = useState("");
   const [MangezExt, setMangezExt] = useState("");
   const [PrepaRepas, setPrepaRepas] = useState("");
+  const [LesVices, setLesVices] = useState("");
   // arrays
   const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
   const estomac = ["Oui", "Non", "Je ne suis pas sur"];
@@ -138,6 +139,17 @@ export function MyForm() {
     "Moins de 30min par repas",
     "30-60 minutes par repas",
     "plus de 1 heure par repas",
+  ];
+  const lesvices = [
+    "Incapable de me reposer suffisamment",
+    "j'adore le chocolat et les bonbons",
+    "le soda est meilleur ami",
+    "je consomme beaucoup d'aliment sales",
+    "je grignote tard le soir",
+    "la malbouffe est mon petit plaisir",
+    "je mange chaque fois que je me sens mal",
+    "j'ai tendance a trop manger",
+    "Aucune de ces reponses",
   ];
 
   const handleSubmit = async (e: any) => {
@@ -235,7 +247,9 @@ export function MyForm() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-[350px]">
-                        <ScrollArea className="w-full h-52">
+                        <ScrollArea className="w-full h-52 relative">
+                          <div className="  bg-gradient-to-t from-black/10 to-50% pointer-events-none rounded-md to-transparent absolute w-full h-full"></div>
+
                           {wilayas.map((wilaya) => (
                             <DropdownMenuItem
                               //@ts-ignore
@@ -686,7 +700,50 @@ export function MyForm() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Certains de ces vices vous retiennent-ils ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {LesVices == "" ? "choose une vice" : LesVices}
+                            <div className="flex items-center gap-2">
+                              {LesVices == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full relative h-52 ">
+                          <div className="absolute h-full w-full bg-gradient-to-t from-black/10 to-30% rounded-md pointer-events-none to-transparent  "></div>
+                          {lesvices.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setLesVices(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
+              ) : Step == 5 ? (
+                <div>page 5</div>
               ) : null}
             </div>
 
