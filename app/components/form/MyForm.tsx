@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import React from "react";
 
 export function MyForm() {
   const TotalStep = 10;
@@ -903,7 +904,7 @@ export function MyForm() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
-                  <div>selection za3ma</div>
+                  <div>multiseles za3ma</div>
                 </div>
               ) : null}
             </div>

@@ -4,7 +4,7 @@ import "./globals.css";
 import Navigationbar from "./components/Navigationbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
-
+import { Providers } from "./providers/NextUserProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <Toaster />
           <Navigationbar />
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>
