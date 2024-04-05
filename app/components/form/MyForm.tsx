@@ -42,60 +42,62 @@ export function MyForm() {
   const [LesRepas, setLesRepas] = useState("");
   const [LesTendance, setLesTendance] = useState("");
   const [MangezExt, setMangezExt] = useState("");
+  const [PrepaRepas, setPrepaRepas] = useState("");
   // arrays
   const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
   const estomac = ["Oui", "Non", "Je ne suis pas sur"];
   const genders = ["male", "femal"];
   const wilayas = [
-    "Adrar",
-    "Chlef",
-    "Laghouat",
-    "Oum El Bouaghi",
-    "Batna",
-    "Bejaia",
-    "Biskra",
-    "Bechar",
-    "Blida",
-    "Bouira",
-    "Tamanrasset",
-    "Tebessa",
-    "Tlemcen",
-    "Tiaret",
-    "Tizi Ouzou",
-    "Alger",
-    "Djelfa",
-    "Jijel",
-    "Setif",
-    "Saida",
-    "Skikda",
-    "Sidi Bel Abbès",
-    "Annaba",
-    "Guelma",
-    "Constantine",
-    "Medea",
-    "Mostaganem",
-    "M'Sila",
-    "Mascara",
-    "Ouargla",
-    "Oran",
-    "El Bayadh",
-    "Illizi",
-    "Bordj Bou Arreridj",
-    "Boumerdès",
-    "El Tarf",
-    "Tindouf",
-    "Tissemsilt",
-    "El Oued",
-    "Khenchela",
-    "Souk Ahras",
-    "Tipaza",
-    "Mila",
-    "Ain Defla",
-    "Naâma",
-    "Ain Temouchent",
-    "Ghardaia",
-    "Relizane",
+    "1. Adrar",
+    "2. Chlef",
+    "3. Laghouat",
+    "4. Oum El Bouaghi",
+    "5. Batna",
+    "6. Bejaia",
+    "7. Biskra",
+    "8. Bechar",
+    "9. Blida",
+    "10. Bouira",
+    "11. Tamanrasset",
+    "12. Tebessa",
+    "13. Tlemcen",
+    "14. Tiaret",
+    "15. Tizi Ouzou",
+    "16. Alger",
+    "17. Djelfa",
+    "18. Jijel",
+    "19. Setif",
+    "20. Saida",
+    "21. Skikda",
+    "22. Sidi Bel Abbès",
+    "23. Annaba",
+    "24. Guelma",
+    "25. Constantine",
+    "26. Medea",
+    "27. Mostaganem",
+    "28. M'Sila",
+    "29. Mascara",
+    "30. Ouargla",
+    "31. Oran",
+    "32. El Bayadh",
+    "33. Illizi",
+    "34. Bordj Bou Arreridj",
+    "35. Boumerdès",
+    "36. El Tarf",
+    "37. Tindouf",
+    "38. Tissemsilt",
+    "39. El Oued",
+    "40. Khenchela",
+    "41. Souk Ahras",
+    "42. Tipaza",
+    "43. Mila",
+    "44. Ain Defla",
+    "45. Naâma",
+    "46. Ain Temouchent",
+    "47. Ghardaia",
+    "48. Relizane",
   ];
+
   const objectivesPrincipal = [
     "Perdre du poids",
     "Prendre du poids",
@@ -131,6 +133,11 @@ export function MyForm() {
     "Plus de 4 fois par semaine",
     "1-3 fois par mois ",
     "Presque jamais",
+  ];
+  const prepa = [
+    "Moins de 30min par repas",
+    "30-60 minutes par repas",
+    "plus de 1 heure par repas",
   ];
 
   const handleSubmit = async (e: any) => {
@@ -216,7 +223,10 @@ export function MyForm() {
                             {Wilaya == "" ? "choose wilaya" : Wilaya}
                             <div className="flex items-center gap-2">
                               {Wilaya == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -254,7 +264,10 @@ export function MyForm() {
                             {Gender == "" ? "choose gender" : Gender}
                             <div className="flex items-center gap-2">
                               {Gender == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -291,7 +304,10 @@ export function MyForm() {
                               : ObjectivePrincipal}
                             <div className="flex items-center gap-2">
                               {ObjectivePrincipal == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -351,7 +367,10 @@ export function MyForm() {
                               : JourneGeneral}
                             <div className="flex items-center gap-2">
                               {JourneGeneral == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -393,7 +412,10 @@ export function MyForm() {
                               : ActivitePhy}
                             <div className="flex items-center gap-2">
                               {ActivitePhy == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -431,7 +453,10 @@ export function MyForm() {
                             {Fatigue == "" ? "choose un option" : Fatigue}
                             <div className="flex items-center gap-2">
                               {Fatigue == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -469,7 +494,10 @@ export function MyForm() {
                             {Estomac == "" ? "choose un option" : Estomac}
                             <div className="flex items-center gap-2">
                               {Estomac == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -506,7 +534,10 @@ export function MyForm() {
                             {LesRepas == "" ? "choose un option" : LesRepas}
                             <div className="flex items-center gap-2">
                               {LesRepas == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -546,7 +577,10 @@ export function MyForm() {
                               : LesTendance}
                             <div className="flex items-center gap-2">
                               {LesTendance == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -580,11 +614,13 @@ export function MyForm() {
                           variant="outline"
                         >
                           <div className="flex justify-between w-full items-center">
-                            {MangezExt == "" ? "choose une option" : MangezExt}{" "}
-                            s
+                            {MangezExt == "" ? "choose une option" : MangezExt}
                             <div className="flex items-center gap-2">
                               {MangezExt == "" ? null : (
-                                <Check size={15} className="text-green-500" />
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
                               )}
 
                               <ChevronDown size={15} />
@@ -598,6 +634,49 @@ export function MyForm() {
                             <DropdownMenuItem
                               //@ts-ignore
                               onClick={() => setMangezExt(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Combien de temps pouvez-vous consacrer a la preparation de
+                      votre repas ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {PrepaRepas == ""
+                              ? "choose une option"
+                              : PrepaRepas}
+                            <div className="flex items-center gap-2">
+                              {PrepaRepas == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {prepa.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setPrepaRepas(index)}
                               className="flex justify-between items-center"
                             >
                               {index}
