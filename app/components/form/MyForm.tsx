@@ -12,8 +12,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
@@ -44,6 +42,10 @@ export function MyForm() {
   const [MangezExt, setMangezExt] = useState("");
   const [PrepaRepas, setPrepaRepas] = useState("");
   const [LesVices, setLesVices] = useState("");
+  const [MalbouffOuSoda, setMalbouffOuSoda] = useState("");
+  const [SatisfaitPoids, setSatisfaitPoids] = useState("");
+  const [ConsommationEau, setConsommationEau] = useState("");
+
   // arrays
   const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
   const estomac = ["Oui", "Non", "Je ne suis pas sur"];
@@ -151,6 +153,29 @@ export function MyForm() {
     "j'ai tendance a trop manger",
     "Aucune de ces reponses",
   ];
+  const malbouffousoda = [
+    "Presque chaque jour",
+    "Plusieurs fois par semaine",
+    "Une fois chaque semaine ou toutes les deux semaines",
+    "Un fois par mois ou moins sauvent",
+    "Aucune de ces reponses",
+  ];
+  const satisfait = [
+    "Il y a 0 a 6 mois",
+    "Il y a 6 a 12 mois",
+    "Il y a 1 a 3 ans",
+    "Il y a plus de 3 ans",
+    "jamais",
+  ];
+  const consommationeau = [
+    "Environ 2 verres",
+    "2 a 6 verres",
+    "plus de 6 verres",
+    "je ne bois que du cafe et du the",
+    "je ne compte pas, ca depend",
+  ];
+
+  //multiple selection
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -743,11 +768,147 @@ export function MyForm() {
                   </div>
                 </div>
               ) : Step == 5 ? (
-                <div>page 5</div>
+                <div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      A quelle frequence consommez-vous de la malbouffe ou des
+                      sodas ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between 
+                          "
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {MalbouffOuSoda == ""
+                              ? "choose une option"
+                              : MalbouffOuSoda}
+
+                            <div className="flex items-center gap-2">
+                              {MalbouffOuSoda == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {malbouffousoda.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setMalbouffOuSoda(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Quand avez-vous ete satisfait de votre poids pour la
+                      derniere fois ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between 
+                          "
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {SatisfaitPoids == ""
+                              ? "choose une option"
+                              : SatisfaitPoids}
+
+                            <div className="flex items-center gap-2">
+                              {SatisfaitPoids == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {satisfait.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setSatisfaitPoids(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Quelle est votre consommation d&apos;eau quotidienne ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between 
+                          "
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {ConsommationEau == ""
+                              ? "choose une option"
+                              : ConsommationEau}
+
+                            <div className="flex items-center gap-2">
+                              {ConsommationEau == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {consommationeau.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setConsommationEau(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div>selection za3ma</div>
+                </div>
               ) : null}
             </div>
 
-            {Step == 10 ? (
+            {Step == TotalStep ? (
               <Button
                 onClick={() => toast.success("new user added succefuly")}
                 type="submit"
@@ -769,7 +930,7 @@ export function MyForm() {
               Previous
             </Button>
 
-            {Step == 10 ? null : (
+            {Step == TotalStep ? null : (
               <Button
                 onClick={() => setStep(Step + 1)}
                 variant="outline"
