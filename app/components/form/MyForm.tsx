@@ -178,6 +178,9 @@ export function MyForm() {
 
   //multiple selection
 
+  const [MyArray, setMyArray] = useState([]);
+  const ArrayOptions = ["option 1", "option 2", "option 3"];
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(FirstName, LastName, Age, Email, PhoneNum, CodePostal, Wilaya);
@@ -904,7 +907,9 @@ export function MyForm() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
-                  <div>multiseles za3ma</div>
+                  <div>
+                    <span className="text-xs">my array : {MyArray}</span>
+                  </div>
                 </div>
               ) : null}
             </div>
