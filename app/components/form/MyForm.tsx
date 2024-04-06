@@ -17,6 +17,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
+import { Select, SelectItem } from "@nextui-org/react";
 
 export function MyForm() {
   const TotalStep = 10;
@@ -177,9 +178,13 @@ export function MyForm() {
   ];
 
   //multiple selection
+  const valeurs = ["rafik", "malak", "miss you"];
+  const [values, setValues] = useState([""]);
+  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setValues(e.target.value.split(","));
+  };
 
-  const [MyArray, setMyArray] = useState([]);
-  const ArrayOptions = ["option 1", "option 2", "option 3"];
+  //my functionalities
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -908,7 +913,27 @@ export function MyForm() {
                     </DropdownMenu>
                   </div>
                   <div>
-                    <span className="text-xs">my array : {MyArray}</span>
+                    {" "}
+                    <div className="flex w-full  flex-col gap-2">
+                      <Select
+                        variant="bordered"
+                        label="Favorite Animal"
+                        selectionMode="multiple"
+                        placeholder="Select an animal"
+                        selectedKeys={values}
+                        className="w-full"
+                        onChange={handleSelectionChange}
+                      >
+                        {valeurs.map((index) => (
+                          <SelectItem key={index} value={index}>
+                            {index}
+                          </SelectItem>
+                        ))}
+                      </Select>
+                      <p className="text-small text-default-500">
+                        Selected: <div>{Array.from(values).join(", ")}</div>
+                      </p>
+                    </div>{" "}
                   </div>
                 </div>
               ) : null}
