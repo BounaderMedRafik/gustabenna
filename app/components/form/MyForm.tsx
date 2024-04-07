@@ -18,14 +18,19 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export function MyForm() {
-  const TotalStep = 10;
+  const router = useRouter();
+  const TotalStep = 7;
   const { user } = useUser();
+  const UserFirstname = user?.firstName;
+  const UserLastname = user?.lastName;
+  const UserEmail = user?.emailAddresses[0].emailAddress;
   const [Step, setStep] = useState(0);
-  const [FirstName, setFirstName] = useState(user?.firstName);
-  const [LastName, setLastName] = useState(user?.lastName);
-  const [Email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
+  const [FirstName, setFirstName] = useState(UserFirstname);
+  const [LastName, setLastName] = useState(UserLastname);
+  const [Email, setEmail] = useState(UserEmail);
   const [Age, setAge] = useState("");
   const [PhoneNum, setPhoneNum] = useState("");
   const [CodePostal, setCodePostal] = useState("");
@@ -48,6 +53,8 @@ export function MyForm() {
   const [SatisfaitPoids, setSatisfaitPoids] = useState("");
   const [ConsommationEau, setConsommationEau] = useState("");
   const [TempDormi, setTempDormi] = useState("");
+  const [RestrictionAlim, setRestrictionAlim] = useState("");
+  const [ProblemeMedicaux, setProblemeMedicaux] = useState("");
 
   // arrays
   const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
@@ -183,6 +190,23 @@ export function MyForm() {
     "7-8 heurs",
     "plus de heurs",
   ];
+  const restrictionalim = [
+    "Rien de tout cela",
+    "Sans lactose",
+    "Sans gluten",
+    "pas de poisson",
+    "pas de fruits de mer",
+  ];
+  const problemeMed = [
+    "Diabete de type 01",
+    "hypertension aterielle",
+    "cancer",
+    "Syndrom des ovaires polykstique (SOPK)",
+    "trouble de l'alimentation",
+    "hepatites virales",
+    "autre maladie ou trouble preexistant",
+    "aucun de la liste",
+  ];
 
   //multiple selection
   const lesLiqueds = [
@@ -200,25 +224,187 @@ export function MyForm() {
     setLesLiqueds(e.target.value.split(","));
   };
 
+  const lesLegumes = [
+    "pomme de terre",
+    "tomate",
+    "concombre",
+    "poivron",
+    "oignon",
+    "epinards",
+    "l'ail",
+    "champignons",
+    "tomate cerise",
+    "laitue",
+    "courgette",
+    "carotte",
+    "citrouille",
+    "betteraves",
+    "petit pois",
+    "aubergine",
+    "asperge",
+    "brocoli",
+    "chou-fleur",
+    "radis",
+  ];
+  const [LesLigumes, setLesLigumes] = useState([""]);
+  const handleLesLigumes = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesLigumes(e.target.value.split(","));
+  };
+
+  const lesPains = [
+    "riz",
+    "spaghetti",
+    "pain complet",
+    "couscous",
+    "flocons d'avoine",
+    "quinoa",
+    "pain blanc",
+  ];
+  const [LesPains, setLesPains] = useState([""]);
+  const handleLesPains = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesPains(e.target.value.split(","));
+  };
+
+  const lesPoisson = [
+    "Thon",
+    "sardine",
+    "dorade",
+    "espadon",
+    "merlan",
+    "latcha",
+    "saumon",
+    "poulpe",
+    "bonite",
+    "crevette",
+  ];
+  const [LesPoisson, setLesPoisson] = useState([""]);
+  const handleLesPoisson = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesPoisson(e.target.value.split(","));
+  };
+
+  const lesLaitiers = [
+    "Yaourt grec",
+    "feta",
+    "creme",
+    "parmesan rape",
+    "mozzarella burrata",
+    "mozzarella",
+    "fromage a la creme light",
+  ];
+  const [LesLaitiers, setLesLaitiers] = useState([""]);
+  const handleLesLaitiers = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesLaitiers(e.target.value.split(","));
+  };
+
+  const lesViands = [
+    "oeuf",
+    "escalope de poulet",
+    "poitrine de dinde",
+    "poulet hache",
+    "saucisse de poulet",
+    "boeuf",
+    "cheval",
+    "chevreau",
+    "veau",
+    "L'agneau",
+  ];
+  const [LesViands, setLesViands] = useState([""]);
+  const handleLesViands = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesViands(e.target.value.split(","));
+  };
+
+  const lesFruites = [
+    "bananes",
+    "pomme",
+    "poire",
+    "orange",
+    "baies fraiches",
+    "avocat",
+    "mangue",
+    "fraise",
+  ];
+  const [LesFruites, setLesFruites] = useState([""]);
+  const handleLesFruites = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesFruites(e.target.value.split(","));
+  };
   //my functionalities
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(
-      FirstName,
-      LastName,
-      Age,
-      Email,
       PhoneNum,
       CodePostal,
-      Wilaya,
-      LesLiqueds
+      Gender,
+      ObjectivePrincipal,
+      Taille,
+      PoidsAct,
+      PoidsSouh,
+      JourneGeneral,
+      ActivitePhy,
+      Fatigue,
+      Estomac,
+      LesRepas,
+      LesTendance,
+      MangezExt,
+      PrepaRepas,
+      LesVices,
+      MalbouffOuSoda,
+      SatisfaitPoids,
+      ConsommationEau,
+      TempDormi,
+      RestrictionAlim,
+      ProblemeMedicaux,
+      //array
+      LesLiqueds,
+      LesLigumes,
+      LesPains,
+      LesPoisson,
+      LesLaitiers,
+      LesViands,
+      LesFruites
     );
 
     //supabase stuff dont forget :)
-    // const { data, error } = await supabase
-    //   .from("Users")
-    //   .insert([{ FirstName, LastName, Age, Email }]);
+    const { data, error } = await supabase.from("Users").insert([
+      {
+        FirstName,
+        LastName,
+        Age,
+        Email,
+        PhoneNum,
+        CodePostal,
+        Gender,
+        ObjectivePrincipal,
+        Taille,
+        PoidsAct,
+        PoidsSouh,
+        JourneGeneral,
+        ActivitePhy,
+        Fatigue,
+        Estomac,
+        LesRepas,
+        LesTendance,
+        MangezExt,
+        PrepaRepas,
+        LesVices,
+        MalbouffOuSoda,
+        SatisfaitPoids,
+        ConsommationEau,
+        TempDormi,
+        RestrictionAlim,
+        ProblemeMedicaux,
+        //array
+        LesLiqueds,
+        LesLigumes,
+        LesPains,
+        LesPoisson,
+        LesLaitiers,
+        LesViands,
+        LesFruites,
+      },
+    ]);
+
+    router.push("/results");
   };
 
   return (
@@ -964,7 +1150,7 @@ export function MyForm() {
 
                   <div className="mt-4">
                     <Label className="mb-2">
-                      Combien de repas par jour aimeriez-vous avoir ?
+                      Combien de temps dormez-vous habituellement ?
                     </Label>
                     <DropdownMenu>
                       <DropdownMenuTrigger className="w-full">
@@ -973,9 +1159,9 @@ export function MyForm() {
                           variant="outline"
                         >
                           <div className="flex justify-between w-full items-center">
-                            {LesRepas == "" ? "choose un option" : LesRepas}
+                            {TempDormi == "" ? "choose un option" : TempDormi}
                             <div className="flex items-center gap-2">
-                              {LesRepas == "" ? null : (
+                              {TempDormi == "" ? null : (
                                 <Check
                                   size={15}
                                   className="bg-green-500 p-0.5 text-white rounded-sm "
@@ -989,10 +1175,244 @@ export function MyForm() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-[350px]">
                         <ScrollArea className="w-full ">
-                          {lesRepas.map((index) => (
+                          {tempdormi.map((index) => (
                             <DropdownMenuItem
                               //@ts-ignore
-                              onClick={() => setLesRepas(index)}
+                              onClick={() => setTempDormi(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Avez-vous de restrictions alimentaires ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {RestrictionAlim == ""
+                              ? "choose un option"
+                              : RestrictionAlim}
+                            <div className="flex items-center gap-2">
+                              {RestrictionAlim == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {restrictionalim.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setRestrictionAlim(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+              ) : Step == 6 ? (
+                <div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez <span className="underline">les ligumes</span>{" "}
+                      que vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesLigumes}
+                      className="w-[350px] relative "
+                      onChange={handleLesLigumes}
+                    >
+                      {lesLegumes.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez{" "}
+                      <span className="underline">les Pains et cereales</span>{" "}
+                      que vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesPains}
+                      className=" w-[350px] bg-white "
+                      onChange={handleLesPains}
+                    >
+                      {lesPains.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez <span className="underline">Les poissons</span>{" "}
+                      que vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesPoisson}
+                      className=" w-[350px] bg-white "
+                      onChange={handleLesPoisson}
+                    >
+                      {lesPoisson.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez{" "}
+                      <span className="underline">Les Produits laitiers</span>{" "}
+                      que vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesLaitiers}
+                      className=" w-[350px] bg-white "
+                      onChange={handleLesLaitiers}
+                    >
+                      {lesLaitiers.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez{" "}
+                      <span className="underline">Les viands et oeufs</span> que
+                      vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesViands}
+                      className=" w-[350px] bg-white "
+                      onChange={handleLesViands}
+                    >
+                      {lesViands.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez{" "}
+                      <span className="underline">Les viands et oeufs</span> que
+                      vous aimez
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesFruites}
+                      className=" w-[350px] bg-white "
+                      onChange={handleLesFruites}
+                    >
+                      {lesFruites.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+                </div>
+              ) : Step == 7 ? (
+                <div>
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Souffrez-vous de l&apos;un des problemes medicaux suivants
+                      ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {ProblemeMedicaux == ""
+                              ? "choose un option"
+                              : ProblemeMedicaux}
+                            <div className="flex items-center gap-2">
+                              {ProblemeMedicaux == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {problemeMed.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setProblemeMedicaux(index)}
                               className="flex justify-between items-center"
                             >
                               {index}
