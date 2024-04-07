@@ -47,6 +47,7 @@ export function MyForm() {
   const [MalbouffOuSoda, setMalbouffOuSoda] = useState("");
   const [SatisfaitPoids, setSatisfaitPoids] = useState("");
   const [ConsommationEau, setConsommationEau] = useState("");
+  const [TempDormi, setTempDormi] = useState("");
 
   // arrays
   const lesRepas = ["Duex", "Trois", "Quatre", "Cinq"];
@@ -175,6 +176,12 @@ export function MyForm() {
     "plus de 6 verres",
     "je ne bois que du cafe et du the",
     "je ne compte pas, ca depend",
+  ];
+  const tempdormi = [
+    "Moins de 5 heurs",
+    "5-6 heurs",
+    "7-8 heurs",
+    "plus de heurs",
   ];
 
   //multiple selection
@@ -930,30 +937,70 @@ export function MyForm() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
-                  <div>
-                    <div className="flex w-full  flex-col gap-2 mt-5">
-                      <Label className="">
-                        Choisissez les liqueds que vous consommez pour vous
-                        hydrater
-                      </Label>
-                      <Select
-                        placeholder="Hello"
-                        size="sm"
-                        radius="sm"
-                        color="primary"
-                        variant="bordered"
-                        selectionMode="multiple"
-                        selectedKeys={LesLiqueds}
-                        className="w-full relative "
-                        onChange={handleLesLiqueds}
-                      >
-                        {lesLiqueds.map((index) => (
-                          <SelectItem className="" key={index} value={index}>
-                            {index}
-                          </SelectItem>
-                        ))}
-                      </Select>
-                    </div>
+
+                  <div className="flex w-full  flex-col gap-2 mt-5">
+                    <Label className="">
+                      Choisissez les liqueds que vous consommez pour vous
+                      hydrater
+                    </Label>
+                    <Select
+                      placeholder="Hello"
+                      size="sm"
+                      radius="sm"
+                      color="primary"
+                      variant="bordered"
+                      selectionMode="multiple"
+                      selectedKeys={LesLiqueds}
+                      className="w-full relative "
+                      onChange={handleLesLiqueds}
+                    >
+                      {lesLiqueds.map((index) => (
+                        <SelectItem className="" key={index} value={index}>
+                          {index}
+                        </SelectItem>
+                      ))}
+                    </Select>
+                  </div>
+
+                  <div className="mt-4">
+                    <Label className="mb-2">
+                      Combien de repas par jour aimeriez-vous avoir ?
+                    </Label>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="w-full">
+                        <Button
+                          className="w-full flex justify-between"
+                          variant="outline"
+                        >
+                          <div className="flex justify-between w-full items-center">
+                            {LesRepas == "" ? "choose un option" : LesRepas}
+                            <div className="flex items-center gap-2">
+                              {LesRepas == "" ? null : (
+                                <Check
+                                  size={15}
+                                  className="bg-green-500 p-0.5 text-white rounded-sm "
+                                />
+                              )}
+
+                              <ChevronDown size={15} />
+                            </div>
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[350px]">
+                        <ScrollArea className="w-full ">
+                          {lesRepas.map((index) => (
+                            <DropdownMenuItem
+                              //@ts-ignore
+                              onClick={() => setLesRepas(index)}
+                              className="flex justify-between items-center"
+                            >
+                              {index}
+                            </DropdownMenuItem>
+                          ))}
+                        </ScrollArea>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
               ) : null}
