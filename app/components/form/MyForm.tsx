@@ -178,17 +178,35 @@ export function MyForm() {
   ];
 
   //multiple selection
-  const valeurs = ["rafik", "malak", "miss you"];
-  const [values, setValues] = useState([""]);
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValues(e.target.value.split(","));
+  const lesLiqueds = [
+    "Eau",
+    "soda",
+    "cafe",
+    "lait",
+    "the",
+    "yaourt",
+    "jus",
+    "autre",
+  ];
+  const [LesLiqueds, setLesLiqueds] = useState([""]);
+  const handleLesLiqueds = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLesLiqueds(e.target.value.split(","));
   };
 
   //my functionalities
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(FirstName, LastName, Age, Email, PhoneNum, CodePostal, Wilaya);
+    console.log(
+      FirstName,
+      LastName,
+      Age,
+      Email,
+      PhoneNum,
+      CodePostal,
+      Wilaya,
+      LesLiqueds
+    );
 
     //supabase stuff dont forget :)
     // const { data, error } = await supabase
@@ -913,27 +931,29 @@ export function MyForm() {
                     </DropdownMenu>
                   </div>
                   <div>
-                    {" "}
-                    <div className="flex w-full  flex-col gap-2">
+                    <div className="flex w-full  flex-col gap-2 mt-5">
+                      <Label className="">
+                        Choisissez les liqueds que vous consommez pour vous
+                        hydrater
+                      </Label>
                       <Select
+                        placeholder="Hello"
+                        size="sm"
+                        radius="sm"
+                        color="primary"
                         variant="bordered"
-                        label="Favorite Animal"
                         selectionMode="multiple"
-                        placeholder="Select an animal"
-                        selectedKeys={values}
-                        className="w-full"
-                        onChange={handleSelectionChange}
+                        selectedKeys={LesLiqueds}
+                        className="w-full relative "
+                        onChange={handleLesLiqueds}
                       >
-                        {valeurs.map((index) => (
-                          <SelectItem key={index} value={index}>
+                        {lesLiqueds.map((index) => (
+                          <SelectItem className="" key={index} value={index}>
                             {index}
                           </SelectItem>
                         ))}
                       </Select>
-                      <p className="text-small text-default-500">
-                        Selected: <div>{Array.from(values).join(", ")}</div>
-                      </p>
-                    </div>{" "}
+                    </div>
                   </div>
                 </div>
               ) : null}
