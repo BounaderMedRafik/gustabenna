@@ -1,32 +1,24 @@
-"use client";
+import { Button } from "@/components/ui/button";
 import React from "react";
-import Image from "next/image";
-import HeroSecBG from "@/public/HeroSecBG.svg";
-import { SignUpButton } from "@clerk/clerk-react";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 const HeroSection = () => {
   return (
-    <div className="bg-slate-50 min-h-[85vh] flex justify-center items-center">
-      <div className="relative z-10 ">
-        <div className="text-7xl font-bold">Gusta Benna Prototype</div>
-        <div className="mt-2">
-          let's{" "}
+    <div className="w-full bg-[url('/background.png')] bg-center bg-cover text-slate-950 py-32 relative">
+      <div className=" pointer-events-none bg-gradient-to-t from-white via-transparent absolute top-0 right-0 w-full h-full to-white"></div>
+      <div className="relative z-10">
+        <div className="text-7xl max-w-3xl font-bold mx-auto text-center">
+          GustaBenna For Your <span className="text-slate-50">Health</span>{" "}
+          Care.
+        </div>
+        <div className="mt-7 w-full flex gap-2 justify-center items-center p-5">
+          <SignInButton mode="modal">
+            <Button>Log In</Button>
+          </SignInButton>
           <SignUpButton mode="modal">
-            <span className="text-green-500  hover:underline cursor-pointer">
-              Start Now
-            </span>
-          </SignUpButton>{" "}
-          This prototyp and see how it goes
+            <Button variant={"secondary"}>create an account</Button>
+          </SignUpButton>
         </div>
       </div>
-      <Image
-        loading="lazy"
-        placeholder="empty"
-        quality={100}
-        src={HeroSecBG}
-        layout="fill"
-        objectFit="cover"
-        alt="background"
-      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import QuestionnaireBG from "@/public/QuestionnaireBG.svg";
+import QuestionnaireBG from "@/public/background_nature.svg";
 import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import MyInputField from "./MyInputField";
@@ -1428,8 +1428,8 @@ export function MyForm() {
               <Button
                 onClick={() => toast.success("new user added succefuly")}
                 type="submit"
+                variant={"submit"}
                 className="w-full flex justify-center items-center gap-2 mt-7"
-                variant="submit"
               >
                 Submit
                 <Check size={15} />

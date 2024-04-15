@@ -14,11 +14,10 @@ import { SignUpButton } from "@clerk/clerk-react";
 
 const Navigationbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
-    <div className="w-full border-b relative z-10 bg-white/85 backdrop-blur-md">
-      <div className="container mx-auto border-x p-5 flex justify-between items-center">
+    <div className="w-full relative ">
+      <div className="container mx-auto  p-5 flex justify-between items-center">
         <MyLogo />
         <div className=" flex items-center gap-2">
           <SignedOut>
