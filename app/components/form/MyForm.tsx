@@ -18,9 +18,8 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
 
-export const MyForm = () => {
+const MyForm = () => {
   const TotalStep = 7;
   const { user } = useUser();
   const UserFirstname = user?.firstName;
@@ -1493,3 +1492,5 @@ export const MyForm = () => {
     </div>
   );
 };
+
+export default MyForm;

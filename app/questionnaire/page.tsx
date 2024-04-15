@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MyForm } from "../components/form/MyForm";
+import MyForm from "../components/form/MyForm";
 
 const Page = () => {
   return (
