@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 
 const links = [
   {
-    name: "Policy & Agreement",
-    linkTo: "/policy-agreement",
+    name: "Politique et Accord",
+    linkTo: "/politique-accord",
   },
   {
-    name: "About Us",
-    linkTo: "/about-us",
+    name: "À propos de nous",
+    linkTo: "/a-propos",
   },
 ];
 
