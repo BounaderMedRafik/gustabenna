@@ -2,7 +2,7 @@
 import React from "react";
 import { MyForm } from "../components/form/MyForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <MyForm />
@@ -10,4 +10,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

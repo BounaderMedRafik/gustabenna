@@ -21,7 +21,6 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 export const MyForm = () => {
-  const router = useRouter();
   const TotalStep = 7;
   const { user } = useUser();
   const UserFirstname = user?.firstName;
