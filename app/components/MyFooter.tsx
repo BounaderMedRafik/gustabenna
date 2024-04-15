@@ -24,7 +24,7 @@ const MyFooter = () => {
         <div>
           <ul className="flex items-center gap-2">
             {links.map((item) => (
-              <li>
+              <li key={item.name}>
                 <Button variant={"outline"}>
                   <Link href={item.linkTo}>{item.name}</Link>
                 </Button>
