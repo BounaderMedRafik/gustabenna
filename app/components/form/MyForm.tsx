@@ -403,8 +403,6 @@ export function MyForm() {
         LesFruites,
       },
     ]);
-
-    router.push("/results");
   };
 
   return (
