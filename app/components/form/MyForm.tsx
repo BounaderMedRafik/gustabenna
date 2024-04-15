@@ -20,7 +20,7 @@ import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-export function MyForm() {
+export const MyForm = () => {
   const router = useRouter();
   const TotalStep = 7;
   const { user } = useUser();
@@ -495,6 +495,7 @@ export function MyForm() {
 
                           {wilayas.map((wilaya) => (
                             <DropdownMenuItem
+                              key={wilaya}
                               //@ts-ignore
                               onClick={() => setWilaya(wilaya)}
                               className="flex justify-between items-center"
@@ -536,6 +537,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {genders.map((gender) => (
                             <DropdownMenuItem
+                              key={gender}
                               //@ts-ignore
                               onClick={() => setGender(gender)}
                               className="flex justify-between items-center"
@@ -576,6 +578,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {objectivesPrincipal.map((objective) => (
                             <DropdownMenuItem
+                              key={objective}
                               //@ts-ignore
                               onClick={() => setObjectivePrincipal(objective)}
                               className="flex justify-between items-center"
@@ -639,6 +642,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {journesGeneral.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setJourneGeneral(index)}
                               className="flex justify-between items-center"
@@ -684,6 +688,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {activitePhy.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setActivitePhy(index)}
                               className="flex justify-between items-center"
@@ -725,6 +730,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {fatigues.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setFatigue(index)}
                               className="flex justify-between items-center"
@@ -766,6 +772,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {estomac.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setEstomac(index)}
                               className="flex justify-between items-center"
@@ -806,6 +813,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {lesRepas.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setLesRepas(index)}
                               className="flex justify-between items-center"
@@ -849,6 +857,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {tendaces.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setLesTendance(index)}
                               className="flex justify-between items-center"
@@ -889,6 +898,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {mangezext.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setMangezExt(index)}
                               className="flex justify-between items-center"
@@ -932,6 +942,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {prepa.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setPrepaRepas(index)}
                               className="flex justify-between items-center"
@@ -973,6 +984,7 @@ export function MyForm() {
                           <div className="absolute h-full w-full bg-gradient-to-t from-black/10 to-30% rounded-md pointer-events-none to-transparent  "></div>
                           {lesvices.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setLesVices(index)}
                               className="flex justify-between items-center"
@@ -1021,6 +1033,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {malbouffousoda.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setMalbouffOuSoda(index)}
                               className="flex justify-between items-center"
@@ -1066,6 +1079,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {satisfait.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setSatisfaitPoids(index)}
                               className="flex justify-between items-center"
@@ -1111,6 +1125,7 @@ export function MyForm() {
                           {consommationeau.map((index) => (
                             <DropdownMenuItem
                               //@ts-ignore
+                              key={index}
                               onClick={() => setConsommationEau(index)}
                               className="flex justify-between items-center"
                             >
@@ -1175,6 +1190,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {tempdormi.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setTempDormi(index)}
                               className="flex justify-between items-center"
@@ -1218,6 +1234,7 @@ export function MyForm() {
                         <ScrollArea className="w-full ">
                           {restrictionalim.map((index) => (
                             <DropdownMenuItem
+                              key={index}
                               //@ts-ignore
                               onClick={() => setRestrictionAlim(index)}
                               className="flex justify-between items-center"
@@ -1410,6 +1427,7 @@ export function MyForm() {
                           {problemeMed.map((index) => (
                             <DropdownMenuItem
                               //@ts-ignore
+                              key={index}
                               onClick={() => setProblemeMedicaux(index)}
                               className="flex justify-between items-center"
                             >
@@ -1475,4 +1493,4 @@ export function MyForm() {
       </div>
     </div>
   );
-}
+};
