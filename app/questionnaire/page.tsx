@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MyForm } from "../components/form/MyForm";
 
